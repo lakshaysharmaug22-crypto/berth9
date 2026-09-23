@@ -1,0 +1,18 @@
+{
+  "uom": {
+    "EA": "EA", "EACH": "EA", "PC": "EA", "PCS": "EA", "PIECE": "EA", "PIECES": "EA", "NOS": "EA", "NO": "EA", "UNIT": "EA", "UNITS": "EA",
+    "BX": "BX", "BOX": "BX", "BOXES": "BX",
+    "CS": "CS", "CASE": "CS", "CASES": "CS",
+    "CT": "CT", "CTN": "CT", "CARTON": "CT",
+    "PK": "PK", "PACK": "PK", "PKT": "PK",
+    "RL": "RL", "ROLL": "RL", "ROLLS": "RL",
+    "BAG": "BG", "BAGS": "BG", "BG": "BG",
+    "BD": "BD", "BUNDLE": "BD",
+    "KG": "KG", "KGS": "KG", "KILOGRAM": "KG",
+    "LB": "LB", "LBS": "LB",
+    "M": "M", "MTR": "M", "METER": "M", "METRE": "M",
+    "DZ": "DZ", "DOZEN": "DZ",
+    "PR": "PR", "PAIR": "PR",
+    "SET": "SET"
+  }
+}

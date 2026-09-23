@@ -1,0 +1,24 @@
+{
+  "partnerId": "LAKESHORE",
+  "version": 1,
+  "schema": "invoice-line",
+  "format": "XML",
+  "reader": { "recordElement": "InvoiceDetailItem" },
+  "fields": [
+    { "target": "supplierId", "const": "LAKESHORE" },
+    { "target": "invoiceNumber", "source": "InvoiceDetailRequestHeader/@invoiceID", "transform": "trim | upper" },
+    { "target": "invoiceDate", "source": "InvoiceDetailRequestHeader/@invoiceDate", "transform": "date" },
+    { "target": "poNumber", "source": "OrderReference/@orderID", "transform": "trim | upper" },
+    { "target": "lineNumber", "source": "@invoiceLineNumber", "transform": "number" },
+    { "target": "sku", "source": "InvoiceDetailItemReference/ItemID/SupplierPartID", "transform": "trim | upper" },
+    { "target": "description", "source": "InvoiceDetailItemReference/Description", "transform": "collapse" },
+    { "target": "quantity", "source": "@quantity", "transform": "number" },
+    { "target": "uom", "source": "UnitOfMeasure", "transform": "upper | lookup(uom, *)" },
+    { "target": "unitPrice", "source": "UnitPrice/Money", "transform": "amount" },
+    { "target": "lineAmount", "source": "SubtotalAmount/Money", "transform": "amount" },
+    { "target": "currency", "source": "UnitPrice/Money/@currency", "transform": "currency" }
+  ],
+  "enrich": [
+    { "type": "convert", "amount": "lineAmount", "currency": "currency", "target": "lineAmountUsd", "base": "USD" }
+  ]
+}

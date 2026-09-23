@@ -1,0 +1,26 @@
+{
+  "partnerId": "NIMBUS",
+  "version": 1,
+  "schema": "invoice-line",
+  "format": "JSON",
+  "reader": { "recordElement": "lines" },
+  "fields": [
+    { "target": "supplierId", "const": "NIMBUS" },
+    { "target": "invoiceNumber", "source": "invoice/number", "transform": "trim | upper" },
+    { "target": "invoiceDate", "source": "invoice/date", "transform": "date(yyyy-MM-dd)" },
+    { "target": "poNumber", "source": "invoice/po", "transform": "trim | upper" },
+    { "target": "lineNumber", "source": "lineNo", "transform": "number" },
+    { "target": "sku", "source": "partNo", "transform": "trim | upper" },
+    { "target": "description", "source": "desc", "transform": "collapse" },
+    { "target": "quantity", "source": "qty", "transform": "number" },
+    { "target": "uom", "source": "uom", "transform": "upper | lookup(uom, *)" },
+    { "target": "unitPrice", "source": "unitPrice", "transform": "amount" },
+    { "target": "lineAmount", "source": "amount", "transform": "amount" },
+    { "target": "taxAmount", "source": "igst", "transform": "amount" },
+    { "target": "currency", "source": "invoice/currency", "transform": "currency" },
+    { "target": "gstin", "source": "supplier/gstin", "transform": "trim | upper" }
+  ],
+  "enrich": [
+    { "type": "convert", "amount": "lineAmount", "currency": "currency", "target": "lineAmountUsd", "base": "USD" }
+  ]
+}

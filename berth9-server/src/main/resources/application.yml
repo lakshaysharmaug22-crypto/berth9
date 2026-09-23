@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: berth9
+  datasource:
+    url: jdbc:h2:mem:berth9;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  flyway:
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: ${PORT:8080}
+  compression:
+    enabled: true
+
+camel:
+  main:
+    name: berth9
+  springboot:
+    main-run-controller: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+berth9:
+  intake:
+    inbox-dir: ${BERTH9_INBOX_DIR:data/inbox}
+    inbox-uri: ${BERTH9_INBOX_URI:file:data/inbox?recursive=true&move=.done&moveFailed=.error&readLock=changed&readLockMinAge=500&readLockMinLength=0&readLockTimeout=5000&exclude=.*\.part$&delay=1000}
+    outbox-dir: ${BERTH9_OUTBOX_DIR:data/outbox}
+  delivery:
+    erp-base-url: ${BERTH9_ERP_URL:http://localhost:${server.port}/mock/erp}
+    batch-size: 50
+    max-attempts: 5
+    kafka-enabled: ${BERTH9_KAFKA_ENABLED:false}
+    kafka-topic-prefix: berth9.
+  security:
+    operator-token: ${BERTH9_OPERATOR_TOKEN:}
+    max-skew-seconds: 300
+  ai:
+    enabled: ${BERTH9_AI_ENABLED:false}
+    base-url: ${BERTH9_AI_BASE_URL:http://localhost:11434/v1}
+    model: ${BERTH9_AI_MODEL:qwen2.5:7b-instruct}
+    api-key: ${BERTH9_AI_API_KEY:}
+    timeout-seconds: 20
+
+logging:
+  level:
+    dev.berth9: INFO
+    org.apache.camel.component.file: WARN
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:postgres}:5432/berth9
+    username: berth9
+    password: ${DB_PASSWORD:berth9}
+camel:
+  component:
+    kafka:
+      brokers: ${KAFKA_BROKERS:kafka:9092}

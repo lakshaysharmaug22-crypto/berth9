@@ -1,0 +1,33 @@
+{
+  "name": "order-line",
+  "label": "Customer purchase order line",
+  "businessKey": ["customerId", "poNumber", "lineNumber"],
+  "fields": [
+    { "name": "customerId", "type": "STRING", "required": true, "label": "Customer", "kinds": ["CODE", "TEXT"],
+      "aliases": ["customer", "buyer", "customer id", "sender id"] },
+    { "name": "poNumber", "type": "STRING", "required": true, "label": "PO number", "kinds": ["CODE"],
+      "aliases": ["po number", "purchase order number", "order number"] },
+    { "name": "poDate", "type": "DATE", "required": true, "label": "PO date", "kinds": ["DATE"],
+      "aliases": ["po date", "purchase order date", "order date"] },
+    { "name": "lineNumber", "type": "INTEGER", "required": true, "label": "Line", "kinds": ["INTEGER"],
+      "aliases": ["line", "line number", "line no"] },
+    { "name": "sku", "type": "STRING", "required": true, "label": "Our SKU", "kinds": ["CODE"],
+      "aliases": ["vendor part number", "vendor sku", "supplier part", "item code"] },
+    { "name": "buyerPartNumber", "type": "STRING", "required": false, "label": "Buyer part", "kinds": ["CODE"],
+      "aliases": ["buyer part number", "customer part", "buyer item"] },
+    { "name": "description", "type": "STRING", "required": false, "label": "Description", "kinds": ["TEXT"],
+      "aliases": ["item description", "description"] },
+    { "name": "quantity", "type": "DECIMAL", "required": true, "label": "Quantity", "kinds": ["INTEGER", "DECIMAL"],
+      "aliases": ["quantity ordered", "qty", "quantity"] },
+    { "name": "uom", "type": "STRING", "required": false, "label": "UOM", "kinds": ["UOM"],
+      "aliases": ["unit of measure", "uom", "unit"] },
+    { "name": "unitPrice", "type": "DECIMAL", "required": true, "label": "Unit price", "kinds": ["AMOUNT", "DECIMAL"],
+      "aliases": ["unit price", "price"] },
+    { "name": "currency", "type": "STRING", "required": true, "label": "Currency", "kinds": ["CURRENCY"],
+      "aliases": ["currency"] },
+    { "name": "shipToCode", "type": "STRING", "required": true, "label": "Ship-to", "kinds": ["CODE"],
+      "aliases": ["ship to code", "ship to", "location code"] },
+    { "name": "requestedDate", "type": "DATE", "required": false, "label": "Requested delivery", "kinds": ["DATE"],
+      "aliases": ["requested delivery date", "delivery date", "need by date"] }
+  ]
+}

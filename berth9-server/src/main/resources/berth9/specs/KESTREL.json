@@ -1,0 +1,24 @@
+{
+  "partnerId": "KESTREL",
+  "version": 1,
+  "schema": "invoice-line",
+  "format": "X12",
+  "reader": { "recordSegment": "IT1" },
+  "fields": [
+    { "target": "supplierId", "const": "KESTREL" },
+    { "target": "invoiceNumber", "source": "BIG02", "transform": "trim | upper" },
+    { "target": "invoiceDate", "source": "BIG01", "transform": "date(yyyyMMdd)" },
+    { "target": "poNumber", "source": "BIG04", "transform": "trim | upper" },
+    { "target": "lineNumber", "source": "IT101", "transform": "number" },
+    { "target": "sku", "source": "IT1.VP", "transform": "trim | upper" },
+    { "target": "description", "source": "PID05", "transform": "collapse | title" },
+    { "target": "quantity", "source": "IT102", "transform": "number" },
+    { "target": "uom", "source": "IT103", "transform": "upper | lookup(uom, *)" },
+    { "target": "unitPrice", "source": "IT104", "transform": "amount" },
+    { "target": "currency", "source": "CUR.SE.02", "transform": "currency" }
+  ],
+  "enrich": [
+    { "type": "compute", "target": "lineAmount", "left": "quantity", "op": "*", "right": "unitPrice", "scale": 2 },
+    { "type": "convert", "amount": "lineAmount", "currency": "currency", "target": "lineAmountUsd", "base": "USD" }
+  ]
+}

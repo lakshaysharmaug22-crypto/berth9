@@ -1,0 +1,22 @@
+{
+  "partnerId": "BRIGHTMART",
+  "version": 1,
+  "schema": "order-line",
+  "format": "X12",
+  "reader": { "recordSegment": "PO1" },
+  "fields": [
+    { "target": "customerId", "const": "BRIGHTMART" },
+    { "target": "poNumber", "source": "BEG03", "transform": "trim | upper" },
+    { "target": "poDate", "source": "BEG05", "transform": "date(yyyyMMdd)" },
+    { "target": "lineNumber", "source": "PO101", "transform": "number" },
+    { "target": "sku", "source": "PO1.VP", "transform": "trim | upper" },
+    { "target": "buyerPartNumber", "source": "PO1.BP", "transform": "trim | upper" },
+    { "target": "description", "source": "PID05", "transform": "collapse | title" },
+    { "target": "quantity", "source": "PO102", "transform": "number" },
+    { "target": "uom", "source": "PO103", "transform": "upper | lookup(uom, *)" },
+    { "target": "unitPrice", "source": "PO104", "transform": "amount" },
+    { "target": "currency", "const": "USD" },
+    { "target": "shipToCode", "source": "N1.ST.04", "transform": "trim | upper" },
+    { "target": "requestedDate", "source": "DTM.002.02", "transform": "date(yyyyMMdd)" }
+  ]
+}

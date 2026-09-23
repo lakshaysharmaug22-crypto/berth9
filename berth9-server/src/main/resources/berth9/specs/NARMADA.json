@@ -1,0 +1,27 @@
+{
+  "partnerId": "NARMADA",
+  "version": 1,
+  "schema": "invoice-line",
+  "format": "CSV",
+  "reader": {},
+  "fields": [
+    { "target": "supplierId", "const": "NARMADA" },
+    { "target": "invoiceNumber", "source": "Inv No", "transform": "trim | upper" },
+    { "target": "invoiceDate", "source": "Inv Dt", "transform": "date(dd/MM/yyyy)" },
+    { "target": "poNumber", "source": "PO Ref", "transform": "trim | upper" },
+    { "target": "lineNumber", "source": "Line", "transform": "number" },
+    { "target": "sku", "source": "Item Code", "transform": "trim | upper" },
+    { "target": "description", "source": "Item Description", "transform": "collapse" },
+    { "target": "hsnCode", "source": "HSN", "transform": "digits" },
+    { "target": "quantity", "source": "Qty (Nos)", "transform": "number" },
+    { "target": "uom", "const": "EA" },
+    { "target": "unitPrice", "source": "Rate (Rs)", "transform": "amount" },
+    { "target": "lineAmount", "source": "Amt (Rs)", "transform": "amount" },
+    { "target": "taxAmount", "source": "Tax Amt (Rs)", "transform": "amount" },
+    { "target": "currency", "const": "INR" },
+    { "target": "gstin", "source": "GSTIN", "transform": "trim | upper" }
+  ],
+  "enrich": [
+    { "type": "convert", "amount": "lineAmount", "currency": "currency", "target": "lineAmountUsd", "base": "USD" }
+  ]
+}

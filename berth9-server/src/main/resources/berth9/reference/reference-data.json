@@ -1,0 +1,467 @@
+{
+  "po": [
+    {
+      "poNumber": "PO-2026-00412",
+      "supplierId": "KESTREL",
+      "currency": "USD",
+      "poDate": "2026-09-02",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "PO-2026-00437",
+      "supplierId": "KESTREL",
+      "currency": "USD",
+      "poDate": "2026-09-08",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "supplierId": "LAKESHORE",
+      "currency": "USD",
+      "poDate": "2026-09-05",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0118",
+      "supplierId": "SAHYADRI",
+      "currency": "INR",
+      "poDate": "2026-09-01",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0126",
+      "supplierId": "SAHYADRI",
+      "currency": "INR",
+      "poDate": "2026-09-04",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0144",
+      "supplierId": "NARMADA",
+      "currency": "INR",
+      "poDate": "2026-08-28",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "PO-2026-00468",
+      "supplierId": "MIDWEST",
+      "currency": "USD",
+      "poDate": "2026-09-03",
+      "status": "OPEN"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0160",
+      "supplierId": "NIMBUS",
+      "currency": "USD",
+      "poDate": "2026-09-06",
+      "status": "OPEN"
+    }
+  ],
+  "po-line": [
+    {
+      "poNumber": "PO-2026-00412",
+      "sku": "KF-HEX-M8-40",
+      "description": "Hex bolt M8x40 zinc",
+      "orderedQty": 5000,
+      "invoicedQty": 0,
+      "unitPrice": "0.42",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00412",
+      "sku": "KF-HEX-M10-50",
+      "description": "Hex bolt M10x50 zinc",
+      "orderedQty": 3000,
+      "invoicedQty": 0,
+      "unitPrice": "0.61",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00412",
+      "sku": "KF-NUT-M8",
+      "description": "Hex nut M8 zinc",
+      "orderedQty": 8000,
+      "invoicedQty": 0,
+      "unitPrice": "0.09",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00412",
+      "sku": "KF-NUT-M10",
+      "description": "Hex nut M10 zinc",
+      "orderedQty": 6000,
+      "invoicedQty": 0,
+      "unitPrice": "0.12",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00412",
+      "sku": "KF-WSH-M8",
+      "description": "Flat washer M8",
+      "orderedQty": 10000,
+      "invoicedQty": 0,
+      "unitPrice": "0.03",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00437",
+      "sku": "KF-ANC-12",
+      "description": "Wedge anchor 1/2 x 4-1/4",
+      "orderedQty": 1200,
+      "invoicedQty": 0,
+      "unitPrice": "0.88",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00437",
+      "sku": "KF-SCR-DW-2",
+      "description": "Drywall screw #8 x 2, box/1000",
+      "orderedQty": 400,
+      "invoicedQty": 0,
+      "unitPrice": "21.50",
+      "uom": "BX"
+    },
+    {
+      "poNumber": "PO-2026-00437",
+      "sku": "KF-LAG-38",
+      "description": "Lag screw 3/8 x 3",
+      "orderedQty": 2500,
+      "invoicedQty": 0,
+      "unitPrice": "0.34",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "sku": "LP-BOX-RSC-18",
+      "description": "Corrugated RSC box 18x12x12",
+      "orderedQty": 6000,
+      "invoicedQty": 0,
+      "unitPrice": "1.08",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "sku": "LP-BOX-RSC-24",
+      "description": "Corrugated RSC box 24x18x18",
+      "orderedQty": 3000,
+      "invoicedQty": 0,
+      "unitPrice": "1.94",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "sku": "LP-TAPE-48",
+      "description": "Carton sealing tape 48mm x 100m",
+      "orderedQty": 1440,
+      "invoicedQty": 0,
+      "unitPrice": "2.35",
+      "uom": "RL"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "sku": "LP-WRAP-18",
+      "description": "Stretch wrap 18in x 1500ft",
+      "orderedQty": 480,
+      "invoicedQty": 0,
+      "unitPrice": "17.90",
+      "uom": "RL"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "sku": "LP-VOID-FILL",
+      "description": "Kraft void-fill paper roll",
+      "orderedQty": 120,
+      "invoicedQty": 0,
+      "unitPrice": "38.00",
+      "uom": "RL"
+    },
+    {
+      "poNumber": "PO-2026-00455",
+      "sku": "LP-LBL-4X6",
+      "description": "Thermal labels 4x6, roll/500",
+      "orderedQty": 600,
+      "invoicedQty": 0,
+      "unitPrice": "9.40",
+      "uom": "RL"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0118",
+      "sku": "SP-HDPE-GRN-25",
+      "description": "HDPE granules natural, 25 kg bag",
+      "orderedQty": 400,
+      "invoicedQty": 0,
+      "unitPrice": "2850.00",
+      "uom": "BG"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0118",
+      "sku": "SP-PP-GRN-25",
+      "description": "PP granules, 25 kg bag",
+      "orderedQty": 300,
+      "invoicedQty": 0,
+      "unitPrice": "2640.00",
+      "uom": "BG"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0118",
+      "sku": "SP-LLDPE-FLM-500",
+      "description": "LLDPE film roll 500 mm",
+      "orderedQty": 200,
+      "invoicedQty": 0,
+      "unitPrice": "1980.00",
+      "uom": "RL"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0118",
+      "sku": "SP-MB-BLK-25",
+      "description": "Black masterbatch, 25 kg bag",
+      "orderedQty": 60,
+      "invoicedQty": 0,
+      "unitPrice": "4150.00",
+      "uom": "BG"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0126",
+      "sku": "SP-HDPE-GRN-25",
+      "description": "HDPE granules natural, 25 kg bag",
+      "orderedQty": 250,
+      "invoicedQty": 0,
+      "unitPrice": "2850.00",
+      "uom": "BG"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0126",
+      "sku": "SP-PVC-CMP-25",
+      "description": "PVC compound, 25 kg bag",
+      "orderedQty": 150,
+      "invoicedQty": 0,
+      "unitPrice": "3420.00",
+      "uom": "BG"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0144",
+      "sku": "NMW-FLG-SS304-2",
+      "description": "SS304 slip-on flange 2in",
+      "orderedQty": 400,
+      "invoicedQty": 0,
+      "unitPrice": "685.00",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0144",
+      "sku": "NMW-FLG-SS304-3",
+      "description": "SS304 slip-on flange 3in",
+      "orderedQty": 250,
+      "invoicedQty": 0,
+      "unitPrice": "1140.00",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0144",
+      "sku": "NMW-ELB-SS304-2",
+      "description": "SS304 90 deg elbow 2in",
+      "orderedQty": 600,
+      "invoicedQty": 0,
+      "unitPrice": "312.00",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0144",
+      "sku": "NMW-TEE-SS304-2",
+      "description": "SS304 equal tee 2in",
+      "orderedQty": 300,
+      "invoicedQty": 0,
+      "unitPrice": "468.00",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0144",
+      "sku": "NMW-PIPE-SS304-2-6M",
+      "description": "SS304 pipe 2in sch40, 6 m",
+      "orderedQty": 120,
+      "invoicedQty": 0,
+      "unitPrice": "9850.00",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00468",
+      "sku": "MBS-6204-2RS",
+      "description": "Deep groove ball bearing 6204-2RS",
+      "orderedQty": 2000,
+      "invoicedQty": 0,
+      "unitPrice": "2.18",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00468",
+      "sku": "MBS-6205-2RS",
+      "description": "Deep groove ball bearing 6205-2RS",
+      "orderedQty": 1500,
+      "invoicedQty": 0,
+      "unitPrice": "2.64",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00468",
+      "sku": "MBS-UCP205",
+      "description": "Pillow block bearing UCP205",
+      "orderedQty": 400,
+      "invoicedQty": 0,
+      "unitPrice": "11.75",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00468",
+      "sku": "MBS-SEAL-TC-35",
+      "description": "Oil seal TC 35x52x7",
+      "orderedQty": 3000,
+      "invoicedQty": 0,
+      "unitPrice": "0.58",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "PO-2026-00468",
+      "sku": "MBS-GREASE-EP2",
+      "description": "EP2 grease cartridge 14 oz",
+      "orderedQty": 480,
+      "invoicedQty": 0,
+      "unitPrice": "4.95",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0160",
+      "sku": "NC-PCB-CTRL-V3",
+      "description": "Controller PCB assembly v3",
+      "orderedQty": 500,
+      "invoicedQty": 0,
+      "unitPrice": "18.40",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0160",
+      "sku": "NC-HARN-12P",
+      "description": "12-pin wiring harness, 1 m",
+      "orderedQty": 1500,
+      "invoicedQty": 0,
+      "unitPrice": "3.25",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0160",
+      "sku": "NC-SENS-TEMP-K",
+      "description": "K-type thermocouple sensor",
+      "orderedQty": 800,
+      "invoicedQty": 0,
+      "unitPrice": "6.10",
+      "uom": "EA"
+    },
+    {
+      "poNumber": "HLIN-PO-2627-0160",
+      "sku": "NC-ENCL-IP65",
+      "description": "IP65 ABS enclosure 200x150",
+      "orderedQty": 400,
+      "invoicedQty": 0,
+      "unitPrice": "7.80",
+      "uom": "EA"
+    }
+  ],
+  "catalog": [
+    {
+      "sku": "HL-GLV-NIT-M",
+      "description": "Nitrile gloves, medium, box/100",
+      "uom": "BX",
+      "listPrice": "12.50",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-GLV-NIT-L",
+      "description": "Nitrile gloves, large, box/100",
+      "uom": "BX",
+      "listPrice": "12.50",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-TAPE-48-CLR",
+      "description": "Carton tape 48 mm clear, case/36",
+      "uom": "CS",
+      "listPrice": "58.00",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-BOX-RSC-18",
+      "description": "RSC box 18x12x12, bundle/25",
+      "uom": "BD",
+      "listPrice": "34.50",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-LBL-4X6-500",
+      "description": "Thermal label roll 4x6",
+      "uom": "RL",
+      "listPrice": "14.25",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-STRAP-PP-12",
+      "description": "PP strapping 1/2 in coil",
+      "uom": "RL",
+      "listPrice": "44.00",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-BRG-6204",
+      "description": "Ball bearing 6204-2RS",
+      "uom": "EA",
+      "listPrice": "3.95",
+      "currency": "USD"
+    },
+    {
+      "sku": "HL-FLG-SS304-2",
+      "description": "SS304 flange 2 in",
+      "uom": "EA",
+      "listPrice": "14.80",
+      "currency": "USD"
+    }
+  ],
+  "ship-to": [
+    {
+      "customerId": "BRIGHTMART",
+      "shipToCode": "DC04",
+      "name": "Brightmart DC 04",
+      "city": "Dallas",
+      "state": "TX"
+    },
+    {
+      "customerId": "BRIGHTMART",
+      "shipToCode": "DC07",
+      "name": "Brightmart DC 07",
+      "city": "Houston",
+      "state": "TX"
+    },
+    {
+      "customerId": "BRIGHTMART",
+      "shipToCode": "DC11",
+      "name": "Brightmart DC 11",
+      "city": "Oklahoma City",
+      "state": "OK"
+    }
+  ],
+  "fx": [
+    {
+      "currency": "USD",
+      "rate": "1"
+    },
+    {
+      "currency": "INR",
+      "rate": "0.0114"
+    },
+    {
+      "currency": "EUR",
+      "rate": "1.08"
+    },
+    {
+      "currency": "GBP",
+      "rate": "1.27"
+    }
+  ]
+}

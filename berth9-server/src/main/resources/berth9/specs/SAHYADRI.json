@@ -1,0 +1,27 @@
+{
+  "partnerId": "SAHYADRI",
+  "version": 1,
+  "schema": "invoice-line",
+  "format": "XLSX",
+  "reader": { "sheet": "Invoice Register" },
+  "fields": [
+    { "target": "supplierId", "const": "SAHYADRI" },
+    { "target": "invoiceNumber", "source": "Invoice No", "transform": "trim | upper" },
+    { "target": "invoiceDate", "source": "Invoice Date", "transform": "date(dd-MM-yyyy)" },
+    { "target": "poNumber", "source": "PO Number", "transform": "trim | upper" },
+    { "target": "lineNumber", "source": "Sr No", "transform": "number" },
+    { "target": "sku", "source": "Item Code", "transform": "trim | upper" },
+    { "target": "description", "source": "Item Description", "transform": "collapse" },
+    { "target": "hsnCode", "source": "HSN", "transform": "digits" },
+    { "target": "quantity", "source": "Qty", "transform": "number" },
+    { "target": "uom", "source": "UOM", "transform": "upper | lookup(uom, *)" },
+    { "target": "unitPrice", "source": "Rate (₹)", "transform": "amount" },
+    { "target": "lineAmount", "source": "Taxable Value (₹)", "transform": "amount" },
+    { "target": "taxAmount", "sources": ["GST (₹) CGST", "GST (₹) SGST", "GST (₹) IGST"], "join": "+" },
+    { "target": "currency", "const": "INR" },
+    { "target": "gstin", "source": "Supplier GSTIN", "transform": "trim | upper" }
+  ],
+  "enrich": [
+    { "type": "convert", "amount": "lineAmount", "currency": "currency", "target": "lineAmountUsd", "base": "USD" }
+  ]
+}

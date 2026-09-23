@@ -1,0 +1,48 @@
+{
+  "schema": "invoice-line",
+  "rules": [
+    { "id": "REQ_SUPPLIER", "type": "required", "field": "supplierId" },
+    { "id": "REQ_INVOICE_NO", "type": "required", "field": "invoiceNumber" },
+    { "id": "REQ_INVOICE_DATE", "type": "required", "field": "invoiceDate" },
+    { "id": "REQ_PO", "type": "required", "field": "poNumber" },
+    { "id": "REQ_LINE", "type": "required", "field": "lineNumber" },
+    { "id": "REQ_SKU", "type": "required", "field": "sku" },
+    { "id": "REQ_QTY", "type": "required", "field": "quantity" },
+    { "id": "REQ_PRICE", "type": "required", "field": "unitPrice" },
+    { "id": "REQ_AMOUNT", "type": "required", "field": "lineAmount" },
+    { "id": "REQ_CURRENCY", "type": "required", "field": "currency" },
+
+    { "id": "INVOICE_DATE_FUTURE", "type": "dateWindow", "field": "invoiceDate", "maxFutureDays": 1 },
+    { "id": "INVOICE_DATE_STALE", "type": "dateWindow", "field": "invoiceDate", "maxPastDays": 180, "severity": "WARNING" },
+    { "id": "QTY_POSITIVE", "type": "range", "field": "quantity", "min": 0.001 },
+    { "id": "PRICE_NOT_NEGATIVE", "type": "range", "field": "unitPrice", "min": 0 },
+    { "id": "TAX_NOT_NEGATIVE", "type": "range", "field": "taxAmount", "min": 0 },
+    { "id": "CURRENCY_SUPPORTED", "type": "oneOf", "field": "currency", "allowed": ["USD", "INR"] },
+    { "id": "LINE_MATH", "type": "arithmetic", "field": "lineAmount", "left": "quantity", "op": "*", "right": "unitPrice",
+      "tolerance": 0.05, "tolerancePct": 0.5 },
+    { "id": "DUPLICATE_IN_FILE", "type": "unique", "fields": ["invoiceNumber", "lineNumber"] },
+
+    { "id": "PO_EXISTS", "type": "reference", "dataset": "po", "key": "{poNumber}", "mustExist": true,
+      "message": "purchase order not found",
+      "checks": [
+        { "type": "equals", "field": "supplierId", "refField": "supplierId", "label": "PO supplier", "severity": "ERROR" },
+        { "type": "equals", "field": "currency", "refField": "currency", "label": "PO currency", "severity": "ERROR" }
+      ] },
+    { "id": "PO_LINE_MATCH", "type": "reference", "dataset": "po-line", "key": "{poNumber}|{sku}", "mustExist": true,
+      "message": "SKU is not on this purchase order",
+      "checks": [
+        { "type": "withinPct", "field": "unitPrice", "refField": "unitPrice", "label": "PO price", "warnPct": 2, "errorPct": 5 },
+        { "type": "atMost", "field": "quantity", "refField": "orderedQty", "minus": "invoicedQty", "label": "open PO quantity",
+          "tolerancePct": 5, "severity": "ERROR" }
+      ] },
+    { "id": "ALREADY_INVOICED", "type": "reference", "dataset": "invoiced-lines", "key": "{supplierId}|{invoiceNumber}|{lineNumber}",
+      "mustExist": false, "message": "invoice line was already received in an earlier file" },
+
+    { "id": "GST_RULES", "type": "when", "field": "currency", "in": ["INR"], "then": [
+      { "id": "GSTIN_REQUIRED", "type": "required", "field": "gstin" },
+      { "id": "GSTIN_VALID", "type": "gstin", "field": "gstin" },
+      { "id": "HSN_FORMAT", "type": "matches", "field": "hsnCode", "regex": "^[0-9]{4,8}$",
+        "message": "HSN code should be 4 to 8 digits", "severity": "WARNING" }
+    ] }
+  ]
+}

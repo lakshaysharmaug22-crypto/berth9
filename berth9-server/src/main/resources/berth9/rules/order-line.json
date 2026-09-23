@@ -1,0 +1,27 @@
+{
+  "schema": "order-line",
+  "rules": [
+    { "id": "REQ_CUSTOMER", "type": "required", "field": "customerId" },
+    { "id": "REQ_PO", "type": "required", "field": "poNumber" },
+    { "id": "REQ_PO_DATE", "type": "required", "field": "poDate" },
+    { "id": "REQ_LINE", "type": "required", "field": "lineNumber" },
+    { "id": "REQ_SKU", "type": "required", "field": "sku" },
+    { "id": "REQ_QTY", "type": "required", "field": "quantity" },
+    { "id": "REQ_PRICE", "type": "required", "field": "unitPrice" },
+    { "id": "REQ_SHIP_TO", "type": "required", "field": "shipToCode" },
+
+    { "id": "QTY_POSITIVE", "type": "range", "field": "quantity", "min": 0.001 },
+    { "id": "CURRENCY_SUPPORTED", "type": "oneOf", "field": "currency", "allowed": ["USD", "INR"] },
+    { "id": "DUPLICATE_IN_FILE", "type": "unique", "fields": ["poNumber", "lineNumber"] },
+
+    { "id": "SKU_IN_CATALOG", "type": "reference", "dataset": "catalog", "key": "{sku}", "mustExist": true,
+      "message": "SKU is not in our catalog",
+      "checks": [
+        { "type": "withinPct", "field": "unitPrice", "refField": "listPrice", "label": "list price", "warnPct": 3, "errorPct": 10 }
+      ] },
+    { "id": "SHIP_TO_KNOWN", "type": "reference", "dataset": "ship-to", "key": "{customerId}|{shipToCode}", "mustExist": true,
+      "message": "unknown ship-to location" },
+    { "id": "ALREADY_ORDERED", "type": "reference", "dataset": "ordered-lines", "key": "{customerId}|{poNumber}|{lineNumber}",
+      "mustExist": false, "message": "PO line was already received in an earlier file" }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "partnerId": "MIDWEST",
+  "version": 1,
+  "schema": "invoice-line",
+  "format": "FIXED_WIDTH",
+  "reader": {
+    "fixed": {
+      "detail": "D",
+      "trailer": "T",
+      "layouts": {
+        "H": [
+          { "name": "INV_NO", "start": 2, "length": 14 },
+          { "name": "INV_DATE", "start": 16, "length": 8 },
+          { "name": "PO_NO", "start": 24, "length": 15 },
+          { "name": "VENDOR_ID", "start": 39, "length": 8 },
+          { "name": "CURRENCY", "start": 47, "length": 3 }
+        ],
+        "D": [
+          { "name": "LINE_NO", "start": 2, "length": 4 },
+          { "name": "PART_NO", "start": 6, "length": 20 },
+          { "name": "DESCRIPTION", "start": 26, "length": 30 },
+          { "name": "QTY", "start": 56, "length": 9 },
+          { "name": "UOM", "start": 65, "length": 3 },
+          { "name": "UNIT_PRICE", "start": 68, "length": 11 },
+          { "name": "EXT_AMOUNT", "start": 79, "length": 13 }
+        ],
+        "T": [
+          { "name": "RECORD_COUNT", "start": 2, "length": 6 },
+          { "name": "TOTAL_AMOUNT", "start": 8, "length": 15 }
+        ]
+      }
+    }
+  },
+  "fields": [
+    { "target": "supplierId", "const": "MIDWEST" },
+    { "target": "invoiceNumber", "source": "H.INV_NO", "transform": "trim | upper" },
+    { "target": "invoiceDate", "source": "H.INV_DATE", "transform": "date(yyyyMMdd)" },
+    { "target": "poNumber", "source": "H.PO_NO", "transform": "trim | upper" },
+    { "target": "lineNumber", "source": "LINE_NO", "transform": "number" },
+    { "target": "sku", "source": "PART_NO", "transform": "trim | upper" },
+    { "target": "description", "source": "DESCRIPTION", "transform": "collapse | title" },
+    { "target": "quantity", "source": "QTY", "transform": "number" },
+    { "target": "uom", "source": "UOM", "transform": "upper | lookup(uom, *)" },
+    { "target": "unitPrice", "source": "UNIT_PRICE", "transform": "implied(4)" },
+    { "target": "lineAmount", "source": "EXT_AMOUNT", "transform": "implied(2)" },
+    { "target": "currency", "source": "H.CURRENCY", "transform": "currency" }
+  ],
+  "enrich": [
+    { "type": "convert", "amount": "lineAmount", "currency": "currency", "target": "lineAmountUsd", "base": "USD" }
+  ]
+}
