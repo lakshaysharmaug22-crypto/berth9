@@ -1,0 +1,20 @@
+:host { display: block; }
+.diagram { width: 100%; height: auto; display: block; }
+.route { fill: none; stroke: var(--flow-line); stroke-width: 1.6; }
+.route.dashed { stroke-dasharray: 3 5; stroke-width: 1.2; opacity: .8; }
+.partner rect, .partner circle { fill: var(--node-bg); stroke: var(--border-strong); }
+.partner-id { font: 600 11px var(--font); fill: var(--text); }
+.partner-fmt { font: 500 9.5px var(--mono); fill: var(--text-3); }
+.partner-initial { font: 700 9px var(--font); fill: var(--text-2); }
+.node rect { fill: var(--node-bg); stroke: var(--border-strong); stroke-width: 1.2; transition: stroke .3s, fill .3s; }
+.node.active rect { stroke: var(--brand); stroke-width: 2; fill: color-mix(in srgb, var(--brand-soft) 70%, var(--node-bg)); }
+.node[data-tone="err"] rect { stroke: var(--err); fill: var(--err-soft); }
+.node[data-tone="warn"] rect { stroke: var(--warn); fill: var(--warn-soft); }
+.node-label { font: 600 12px var(--font); fill: var(--text); }
+.node-sub { font: 500 9.5px var(--font); fill: var(--text-3); }
+.legend { font: 500 10px var(--font); fill: var(--text-3); }
+.particle { fill: var(--brand); }
+.particle[data-tone="ok"] { fill: var(--ok); }
+.particle[data-tone="err"] { fill: var(--err); }
+.particle[data-tone="warn"] { fill: var(--warn); }
+.particle[data-tone="muted"] { fill: var(--text-3); }

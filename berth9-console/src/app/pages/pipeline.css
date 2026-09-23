@@ -1,0 +1,34 @@
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; }
+.layout.lower { grid-template-columns: minmax(0, 1fr) 360px; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px 18px 4px; }
+.diagram-card { padding-bottom: 10px; }
+.diagram-card b9-pipeline-diagram { padding: 4px 10px 0; }
+.feed { display: flex; flex-direction: column; max-height: 560px; }
+.events { list-style: none; margin: 0; padding: 6px 12px 12px; overflow-y: auto; flex: 1; }
+.events li { display: flex; gap: 10px; padding: 8px 6px; border-bottom: 1px solid var(--border); animation: in .25s ease-out; }
+.events li:last-child { border-bottom: none; }
+@keyframes in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.ev-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; background: var(--brand); flex: none; }
+.events li[data-type^="delivery.succeeded"] .ev-dot { background: var(--ok); }
+.events li[data-type="delivery.failed"] .ev-dot, .events li[data-type="file.failed"] .ev-dot { background: var(--err); }
+.events li[data-type="ack.sent"] .ev-dot, .events li[data-type="breaker.state"] .ev-dot { background: var(--warn); }
+.events li[data-type="file.duplicate"] .ev-dot { background: var(--text-3); }
+.ev-text { font-size: 13px; }
+.ev-meta { font-size: 11px; color: var(--text-3); }
+.err-text { color: var(--err); }
+.file { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nowrap { white-space: nowrap; }
+.chaos { display: flex; flex-direction: column; gap: 12px; }
+.chaos p { margin: 0; }
+.switch { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.switch input { width: 18px; height: 18px; accent-color: var(--err); }
+.slider { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.slider input { width: 100%; accent-color: var(--brand); padding: 0; border: none; box-shadow: none; }
+.small { font-size: 12px; }
+
+@media (max-width: 1100px) {
+  .layout, .layout.lower { grid-template-columns: minmax(0, 1fr); }
+  .feed { max-height: 380px; }
+}
+
+@media (max-width: 720px) { .file { max-width: 140px; } }

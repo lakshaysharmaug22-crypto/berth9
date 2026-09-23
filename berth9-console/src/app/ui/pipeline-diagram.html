@@ -1,0 +1,44 @@
+<svg #svg [attr.viewBox]="viewBox()" class="diagram" role="img" aria-label="Live pipeline: partners, intake, detect, map, validate, outbox, exceptions, ERP">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  @for (r of routes(); track r.key) {
+    <path [attr.d]="r.d" [attr.data-route]="r.key" class="route" [class.dashed]="r.dashed" />
+  }
+
+  @for (p of partnerNodes(); track p.id) {
+    @if (narrow()) {
+      <g class="partner">
+        <circle [attr.cx]="p.x" [attr.cy]="p.y" r="13" />
+        <text [attr.x]="p.x" [attr.y]="p.y + 4" text-anchor="middle" class="partner-initial">{{ p.id.slice(0, 2) }}</text>
+      </g>
+    } @else {
+      <g class="partner">
+        <rect [attr.x]="p.x - 58" [attr.y]="p.y - 17" width="116" height="34" rx="9" />
+        <text [attr.x]="p.x - 48" [attr.y]="p.y - 2" class="partner-id">{{ p.id }}</text>
+        <text [attr.x]="p.x - 48" [attr.y]="p.y + 11" class="partner-fmt">{{ p.format }}</text>
+      </g>
+    }
+  }
+
+  @for (n of nodes(); track n.id) {
+    <g class="node" [class.active]="active()[n.id]" [attr.data-tone]="nodeTone(n.id)">
+      <rect [attr.x]="n.x - n.w / 2" [attr.y]="n.y - n.h / 2" [attr.width]="n.w" [attr.height]="n.h" rx="11" />
+      <text [attr.x]="n.x" [attr.y]="n.y - 3" text-anchor="middle" class="node-label">{{ n.label }}</text>
+      <text [attr.x]="n.x" [attr.y]="n.y + 13" text-anchor="middle" class="node-sub">
+        {{ (n.id === 'erp' || n.id === 'outbox') && breaker() !== 'CLOSED' ? 'breaker ' + breaker().toLowerCase().replace('_', '-') : n.sub }}
+      </text>
+    </g>
+  }
+
+  @if (!narrow()) {
+    <text x="300" y="455" class="legend">— records · · · 997 acks back to the partner</text>
+  }
+
+  @for (p of particles(); track p.id) {
+    <circle [attr.cx]="p.x" [attr.cy]="p.y" [attr.r]="p.r" class="particle" [attr.data-tone]="p.tone" filter="url(#glow)" />
+  }
+</svg>

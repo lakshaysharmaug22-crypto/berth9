@@ -1,0 +1,110 @@
+<div class="page">
+  <div class="page-head">
+    <div>
+      <h1>Live pipeline</h1>
+      <p>Supplier invoices and customer orders arrive as Excel, CSV, EDI X12, cXML, fixed-width and JSON. Berth 9 maps
+        them to one canonical model, checks them against open purchase orders and delivers them, with a 997 back to EDI partners.</p>
+    </div>
+    <div class="row">
+      <span class="pill" [class]="'pill ' + tone(live.breaker())"><span class="dot"></span>ERP breaker {{ label(live.breaker()) }}</span>
+      <button class="btn primary" (click)="runDemo()" [disabled]="busy() || api.mode() !== 'live'"
+              [title]="api.mode() !== 'live' ? 'Available when connected to a live backend' : 'Drop the sample partner files into the inbox'">
+        Run demo
+      </button>
+    </div>
+  </div>
+
+  <div class="kpis">
+    @for (k of kpis(); track k.label) {
+      <div class="card kpi">
+        <div class="label">{{ k.label }}</div>
+        <div class="value" [class.err-text]="k.tone === 'err' && k.value > 0">{{ num(k.value) }}</div>
+        <div class="sub">{{ k.sub }}</div>
+      </div>
+    }
+  </div>
+
+  <div class="layout">
+    <section class="card diagram-card">
+      <div class="card-head">
+        <h2>Flow</h2>
+        <span class="faint">every dot is a real event</span>
+      </div>
+      <b9-pipeline-diagram [partners]="partners()" />
+    </section>
+
+    <section class="card feed">
+      <div class="card-head">
+        <h2>Event stream</h2>
+        <span class="pill" [class.ok]="live.connected()"><span class="dot"></span>{{ live.connected() ? 'streaming' : 'offline' }}</span>
+      </div>
+      <ol class="events">
+        @for (e of live.recent(); track e.seq) {
+          <li [attr.data-type]="e.type">
+            <span class="ev-dot"></span>
+            <div class="grow">
+              <div class="ev-text">{{ describe(e) }}</div>
+              <div class="ev-meta mono">{{ e.type }} · {{ ago(e.at) }}</div>
+            </div>
+          </li>
+        } @empty {
+          <li class="empty">Waiting for partner files…</li>
+        }
+      </ol>
+    </section>
+  </div>
+
+  <div class="layout lower">
+    <section class="card">
+      <div class="card-head">
+        <h2>Recent files</h2>
+        <a routerLink="/files">All files →</a>
+      </div>
+      <div class="table-wrap">
+        <table class="grid">
+          <thead><tr><th>Partner</th><th>File</th><th class="hide-sm">Format</th><th>Records</th><th>Status</th><th class="hide-sm">Received</th></tr></thead>
+          <tbody>
+            @for (j of overview()?.recentJobs ?? []; track j.id) {
+              <tr class="clickable" [routerLink]="['/files', j.id]">
+                <td><strong>{{ j.partnerId }}</strong></td>
+                <td class="mono file">{{ j.fileName }}</td>
+                <td class="hide-sm"><span class="pill">{{ j.format }}</span></td>
+                <td class="nowrap">{{ j.total }} <span class="faint">({{ j.errors }} err)</span></td>
+                <td><span [class]="'pill ' + tone(j.status)">{{ label(j.status) }}</span></td>
+                <td class="hide-sm faint nowrap">{{ ago(j.receivedAt) }}</td>
+              </tr>
+            } @empty {
+              <tr><td colspan="6" class="empty">No files yet.</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card card-pad chaos">
+      <h2>Resilience drill</h2>
+      <p class="muted">Break the ERP and watch the outbox hold records, the circuit breaker open, then recover without losing or duplicating anything.</p>
+      <label class="switch">
+        <input type="checkbox" [checked]="chaos().erpDown" (change)="setChaos({ erpDown: !chaos().erpDown })" [disabled]="api.mode() !== 'live'">
+        <span>ERP down (HTTP 503)</span>
+      </label>
+      <label class="slider">
+        <span>Failure rate <strong>{{ chaos().failRatePct }}%</strong></span>
+        <input type="range" min="0" max="100" step="10" [value]="chaos().failRatePct" [disabled]="api.mode() !== 'live'"
+               (change)="setChaos({ failRatePct: +$any($event.target).value })">
+      </label>
+      <label class="slider">
+        <span>Added latency <strong>{{ chaos().latencyMs }} ms</strong></span>
+        <input type="range" min="0" max="3000" step="250" [value]="chaos().latencyMs" [disabled]="api.mode() !== 'live'"
+               (change)="setChaos({ latencyMs: +$any($event.target).value })">
+      </label>
+      @if (api.mode() !== 'live') {
+        <p class="faint small">Controls are live when the console is connected to a running backend.</p>
+      }
+    </section>
+  </div>
+</div>
+
+@if (toast()) {
+  <div class="toast">{{ toast() }}</div>
+}
