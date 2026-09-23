@@ -1,0 +1,76 @@
+<div class="page">
+  <div class="page-head">
+    <div>
+      <h1>Exceptions</h1>
+      <p>Records that failed a rule wait here instead of blocking the rest of their file. Fix a value and the record is re-validated
+        against the same rules and purchase orders; if it passes, it goes straight to the delivery outbox. Every action is audited.</p>
+    </div>
+    <span class="pill err">{{ items().length }} open</span>
+  </div>
+
+  @if (byRule().length) {
+    <div class="rules">
+      @for (r of byRule(); track r[0]) { <span class="pill"><span class="mono">{{ r[0] }}</span> × {{ r[1] }}</span> }
+    </div>
+  }
+
+  <div class="split">
+    <section class="card list">
+      @for (r of items(); track r.id) {
+        <button class="item" [class.sel]="selected()?.id === r.id" (click)="open(r)">
+          <div class="row between">
+            <strong>{{ r.partnerId }}</strong>
+            <span [class]="'pill ' + tone(r.status)">{{ label(r.status) }}</span>
+          </div>
+          <div class="mono small">{{ r.businessKey }}</div>
+          <div class="muted small clamp">{{ r.violations?.[0]?.message ?? r.lastError }}</div>
+        </button>
+      } @empty {
+        <div class="empty">Inbox zero. Nothing needs a human right now.</div>
+      }
+    </section>
+
+    @if (selected(); as r) {
+      <section class="card card-pad detail">
+        <div class="row between wrap">
+          <div>
+            <h2>{{ r.partnerId }} · line {{ r.line }}</h2>
+            <a class="small" [routerLink]="['/files', r.jobId]">{{ r.fileName }}</a>
+          </div>
+          <div class="row">
+            @if (r.status === 'DEAD_LETTER') {
+              <button class="btn" (click)="replay()" [disabled]="busy()">Replay delivery</button>
+            }
+            <button class="btn danger" (click)="dismiss()" [disabled]="busy()">Dismiss</button>
+            <button class="btn primary" (click)="save()" [disabled]="busy() || !Object.keys(edits()).length">Save & re-validate</button>
+          </div>
+        </div>
+
+        @for (v of r.violations; track $index) {
+          <div class="violation" [attr.data-sev]="v.severity"><span class="mono rule">{{ v.rule }}</span>{{ v.message }}</div>
+        }
+        @if (r.lastError) { <div class="violation"><span class="mono rule">DELIVERY</span>{{ r.lastError }}</div> }
+
+        <div class="fields">
+          @for (f of editable(); track f.name) {
+            <label class="field" [class.flag]="f.flagged">
+              <span class="mono">{{ f.name }}</span>
+              <input [value]="edits()[f.name] ?? (f.value ?? '')" (input)="edit(f.name, $any($event.target).value)" />
+            </label>
+          }
+        </div>
+
+        @if (audit().length) {
+          <h3>Audit trail</h3>
+          <ul class="audit">
+            @for (a of audit(); track $index) { <li><strong>{{ a.action }}</strong> by {{ a.actor }} · {{ ago(a.at) }}</li> }
+          </ul>
+        }
+        @if (api.mode() !== 'live') {
+          <p class="faint small">Editing needs a live backend; this recorded demo is read-only.</p>
+        }
+      </section>
+    }
+  </div>
+</div>
+@if (toast()) { <div class="toast">{{ toast() }}</div> }

@@ -1,0 +1,86 @@
+@if (data(); as d) {
+<div class="page">
+  <div class="page-head">
+    <div>
+      <a routerLink="/files" class="faint">← Files</a>
+      <h1 class="mono title">{{ d.job.fileName }}</h1>
+      <p>
+        <strong>{{ d.job.partnerId }}</strong> via {{ d.job.channel }} · {{ d.job.format }} · mapping spec v{{ d.job.specVersion }}
+        · {{ num(d.job.sizeBytes) }} bytes · {{ num(d.job.durationMs) }} ms · {{ ago(d.job.receivedAt) }}
+      </p>
+    </div>
+    <span [class]="'pill ' + tone(d.job.status)">{{ label(d.job.status) }}</span>
+  </div>
+
+  @if (d.job.message) { <div class="card card-pad note">{{ d.job.message }}</div> }
+  @for (issue of d.job.fileIssues; track $index) {
+    <div class="card card-pad note warn"><strong>{{ issue.rule }}</strong> · {{ issue.message }}</div>
+  }
+
+  <div class="chips">
+    <button class="pill" [class.brand]="!status()" (click)="status.set('')">all {{ d.records.length }}</button>
+    @for (c of counts(); track c[0]) {
+      <button [class]="'pill ' + tone(c[0])" [class.selected]="status() === c[0]" (click)="status.set(c[0])">{{ label(c[0]) }} {{ c[1] }}</button>
+    }
+  </div>
+
+  <div class="split">
+    <section class="card list">
+      <div class="table-wrap">
+        <table class="grid">
+          <thead><tr><th>Line</th><th>Key</th><th>Status</th></tr></thead>
+          <tbody>
+            @for (r of records(); track r.id) {
+              <tr class="clickable" [class.sel]="selected()?.id === r.id" (click)="selected.set(r)">
+                <td class="faint">{{ r.line }}</td>
+                <td class="mono small">{{ r.businessKey }}</td>
+                <td><span [class]="'pill ' + tone(r.status)">{{ label(r.status) }}</span></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    @if (selected(); as r) {
+      <section class="card card-pad detail">
+        <div class="row between">
+          <h2>Line {{ r.line }}</h2>
+          <span [class]="'pill ' + tone(r.status)">{{ label(r.status) }}</span>
+        </div>
+        @for (v of r.violations; track $index) {
+          <div class="violation" [attr.data-sev]="v.severity">
+            <span class="mono rule">{{ v.rule }}</span> {{ v.message }}
+          </div>
+        }
+        <h3>Canonical record and lineage</h3>
+        <div class="table-wrap">
+          <table class="grid compact">
+            <thead><tr><th>Field</th><th>Value</th><th>From partner column</th></tr></thead>
+            <tbody>
+              @for (f of fields(r); track f.name) {
+                <tr><td class="mono">{{ f.name }}</td><td><strong>{{ f.value ?? '—' }}</strong></td><td class="faint small">{{ f.from }}</td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <h3>As received</h3>
+        <div class="raw">
+          @for (kv of Object.entries(r.source); track kv[0]) {
+            <div class="kv"><span class="k mono">{{ kv[0] }}</span><span class="v mono">{{ kv[1] }}</span></div>
+          }
+        </div>
+      </section>
+    }
+  </div>
+
+  @if (ack()) {
+    <section class="card card-pad">
+      <h2>EDI 997 functional acknowledgment sent back</h2>
+      <pre class="mono edi">{{ ack() }}</pre>
+    </section>
+  }
+</div>
+} @else {
+  <div class="page"><div class="empty">Loading…</div></div>
+}
