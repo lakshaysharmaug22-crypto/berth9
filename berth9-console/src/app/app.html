@@ -1,0 +1,60 @@
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" routerLink="/pipeline">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" class="brand-bg"/><path d="M14 40h36M18 40V26l14-8 14 8v14" fill="none" class="brand-line" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="32" y="36" font-weight="700" font-size="13" text-anchor="middle" class="brand-9">9</text></svg>
+      <div>
+        <div class="brand-name">Berth 9</div>
+        <div class="brand-sub">Partner data onboarding</div>
+      </div>
+    </a>
+    <nav>
+      @for (item of nav; track item.path) {
+        <a [routerLink]="item.path" routerLinkActive="active" class="nav-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="item.icon"/></svg>
+          <span>{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+    <div class="sidebar-foot">
+      <div class="mode" [class.live]="api.mode() === 'live'">
+        <span class="dot"></span>{{ modeLabel() }}
+      </div>
+      <button class="btn small" (click)="cycleTheme()" [attr.aria-label]="'Theme: ' + theme()">
+        Theme: {{ theme() }}
+      </button>
+    </div>
+  </aside>
+
+  <header class="topbar">
+    <a class="brand compact" routerLink="/pipeline">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" class="brand-bg"/><path d="M14 40h36M18 40V26l14-8 14 8v14" fill="none" class="brand-line" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="32" y="36" font-weight="700" font-size="13" text-anchor="middle" class="brand-9">9</text></svg>
+      <span class="brand-name">Berth 9</span>
+    </a>
+    <div class="row">
+      <span class="mode small" [class.live]="api.mode() === 'live'"><span class="dot"></span>{{ modeLabel() }}</span>
+      <button class="icon-btn" (click)="cycleTheme()" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  @if (api.mode() === 'replay') {
+    <div class="replay-banner">
+      Recorded run of the real Java backend, replayed in your browser. Run it live with <code>mvn spring-boot:run</code> and open
+      <code>?api=http://localhost:8080</code>.
+    </div>
+  }
+
+  <main class="content">
+    <router-outlet />
+  </main>
+
+  <nav class="tabbar">
+    @for (item of nav; track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="active">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="item.icon"/></svg>
+        <span>{{ item.label.split(' ')[0] }}</span>
+      </a>
+    }
+  </nav>
+</div>

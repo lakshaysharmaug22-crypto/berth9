@@ -1,0 +1,69 @@
+.shell {
+  display: grid;
+  grid-template-columns: 236px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "side banner" "side main";
+  min-height: 100vh;
+}
+.sidebar {
+  grid-area: side;
+  position: sticky; top: 0; height: 100vh;
+  display: flex; flex-direction: column; gap: 18px;
+  padding: 18px 14px;
+  background: var(--bg-elev);
+  border-right: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none !important; padding: 0 6px; }
+.brand svg { width: 36px; height: 36px; flex: none; }
+.brand-bg { fill: var(--navy); }
+.brand-line { stroke: #2dd4bf; }
+.brand-9 { fill: #fff; font-family: var(--font); }
+.brand-name { font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
+.brand-sub { font-size: 11.5px; color: var(--text-3); }
+nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 9px;
+  color: var(--text-2); font-weight: 500; text-decoration: none !important;
+}
+.nav-item svg, .tabbar svg, .icon-btn svg {
+  width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.nav-item:hover { background: var(--bg-sunk); color: var(--text); }
+.nav-item.active { background: var(--brand-soft); color: var(--brand); }
+.sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 0 4px; }
+.mode { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--warn); font-weight: 600; }
+.mode.live { color: var(--ok); }
+.mode .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 currentColor; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 50%, transparent); } 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.replay-banner {
+  grid-area: banner; font-size: 12.5px; color: var(--text-2); background: var(--warn-soft);
+  padding: 8px 24px; border-bottom: 1px solid var(--border);
+}
+.replay-banner code { background: color-mix(in srgb, var(--bg-elev) 70%, transparent); padding: 1px 5px; border-radius: 5px; }
+.content { grid-area: main; min-width: 0; }
+.topbar, .tabbar { display: none; }
+.icon-btn { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); display: grid; place-items: center; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 1fr; grid-template-areas: "top" "banner" "main"; }
+  .sidebar { display: none; }
+  .topbar {
+    grid-area: top; display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px; background: var(--bg-elev); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 20;
+  }
+  .brand.compact svg { width: 30px; height: 30px; }
+  .mode.small { font-size: 11px; }
+  .replay-banner { padding: 8px 16px; }
+  .tabbar {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    background: color-mix(in srgb, var(--bg-elev) 92%, transparent); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border); padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+  }
+  .tabbar a {
+    display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10.5px; font-weight: 500;
+    color: var(--text-3); text-decoration: none !important; padding: 4px 0;
+  }
+  .tabbar a.active { color: var(--brand); }
+}
