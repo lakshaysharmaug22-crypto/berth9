@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.060/InvoiceDetail.dtd">
+<cXML payloadID="20260919.1402.88712@lakeshorepkg.example" timestamp="2026-09-19T14:02:11-05:00" xml:lang="en-US">
+  <Header>
+    <From><Credential domain="DUNS"><Identity>LAKESHORE-PKG</Identity></Credential></From>
+    <To><Credential domain="NetworkID"><Identity>HARBORLINE</Identity></Credential></To>
+    <Sender><Credential domain="DUNS"><Identity>LAKESHORE-PKG</Identity></Credential><UserAgent>Lakeshore ERP 9.2</UserAgent></Sender>
+  </Header>
+  <Request deploymentMode="production">
+    <InvoiceDetailRequest>
+      <InvoiceDetailRequestHeader invoiceID="LP-26-10877" purpose="standard" operation="new" invoiceDate="2026-09-19T00:00:00-05:00">
+        <InvoiceDetailHeaderIndicator/>
+        <InvoiceDetailLineIndicator/>
+        <InvoicePartner><Contact role="remitTo"><Name xml:lang="en">Lakeshore Packaging Co.</Name></Contact></InvoicePartner>
+      </InvoiceDetailRequestHeader>
+      <InvoiceDetailOrder>
+        <InvoiceDetailOrderInfo>
+          <OrderReference orderID="PO-2026-00455"><DocumentReference payloadID="PO-2026-00455@harborline.example"/></OrderReference>
+        </InvoiceDetailOrderInfo>
+        <InvoiceDetailItem invoiceLineNumber="1" quantity="2400">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <UnitPrice><Money currency="USD">1.08</Money></UnitPrice>
+          <InvoiceDetailItemReference lineNumber="1">
+            <ItemID><SupplierPartID>LP-BOX-RSC-18</SupplierPartID></ItemID>
+            <Description xml:lang="en">Corrugated RSC box 18x12x12</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount><Money currency="USD">2592.00</Money></SubtotalAmount>
+        </InvoiceDetailItem>
+        <InvoiceDetailItem invoiceLineNumber="2" quantity="1200">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <UnitPrice><Money currency="USD">1.94</Money></UnitPrice>
+          <InvoiceDetailItemReference lineNumber="2">
+            <ItemID><SupplierPartID>LP-BOX-RSC-24</SupplierPartID></ItemID>
+            <Description xml:lang="en">Corrugated RSC box 24x18x18</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount><Money currency="USD">2328.00</Money></SubtotalAmount>
+        </InvoiceDetailItem>
+        <InvoiceDetailItem invoiceLineNumber="3" quantity="720">
+          <UnitOfMeasure>RL</UnitOfMeasure>
+          <UnitPrice><Money currency="USD">2.35</Money></UnitPrice>
+          <InvoiceDetailItemReference lineNumber="3">
+            <ItemID><SupplierPartID>LP-TAPE-48</SupplierPartID></ItemID>
+            <Description xml:lang="en">Carton sealing tape 48mm x 100m</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount><Money currency="USD">1692.00</Money></SubtotalAmount>
+        </InvoiceDetailItem>
+        <InvoiceDetailItem invoiceLineNumber="4" quantity="520">
+          <UnitOfMeasure>RL</UnitOfMeasure>
+          <UnitPrice><Money currency="USD">17.90</Money></UnitPrice>
+          <InvoiceDetailItemReference lineNumber="4">
+            <ItemID><SupplierPartID>LP-WRAP-18</SupplierPartID></ItemID>
+            <Description xml:lang="en">Stretch wrap 18in x 1500ft</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount><Money currency="USD">9308.00</Money></SubtotalAmount>
+        </InvoiceDetailItem>
+        <InvoiceDetailItem invoiceLineNumber="5" quantity="60">
+          <UnitOfMeasure>RL</UnitOfMeasure>
+          <UnitPrice><Money currency="USD">38.00</Money></UnitPrice>
+          <InvoiceDetailItemReference lineNumber="5">
+            <ItemID><SupplierPartID>LP-VOID-FILL</SupplierPartID></ItemID>
+            <Description xml:lang="en">Kraft void-fill paper roll</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount><Money currency="USD">2280.00</Money></SubtotalAmount>
+        </InvoiceDetailItem>
+        <InvoiceDetailItem invoiceLineNumber="6" quantity="300">
+          <UnitOfMeasure>RL</UnitOfMeasure>
+          <UnitPrice><Money currency="USD">9.40</Money></UnitPrice>
+          <InvoiceDetailItemReference lineNumber="6">
+            <ItemID><SupplierPartID>LP-LBL-4X6</SupplierPartID></ItemID>
+            <Description xml:lang="en">Thermal labels 4x6, roll/500</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount><Money currency="USD">2820.00</Money></SubtotalAmount>
+        </InvoiceDetailItem>
+      </InvoiceDetailOrder>
+      <InvoiceDetailSummary>
+        <SubtotalAmount><Money currency="USD">21020.00</Money></SubtotalAmount>
+        <Tax><Money currency="USD">0.00</Money><Description xml:lang="en">Resale certificate on file</Description></Tax>
+        <NetAmount><Money currency="USD">21020.00</Money></NetAmount>
+      </InvoiceDetailSummary>
+    </InvoiceDetailRequest>
+  </Request>
+</cXML>

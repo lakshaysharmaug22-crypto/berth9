@@ -1,0 +1,56 @@
+{
+  "supplier": {
+    "code": "NIMBUS",
+    "name": "Nimbus Components Pvt. Ltd.",
+    "gstin": "29AAGCN5521M1Z2"
+  },
+  "invoice": {
+    "number": "NC/EXP/26-27/0088",
+    "date": "2026-09-20",
+    "currency": "USD",
+    "po": "HLIN-PO-2627-0160",
+    "exportType": "LUT (zero-rated)"
+  },
+  "lines": [
+    {
+      "lineNo": 1,
+      "partNo": "NC-PCB-CTRL-V3",
+      "desc": "Controller PCB assembly v3",
+      "qty": 200,
+      "uom": "PCS",
+      "unitPrice": 18.4,
+      "amount": 3680.0,
+      "igst": 0
+    },
+    {
+      "lineNo": 2,
+      "partNo": "NC-HARN-12P",
+      "desc": "12-pin wiring harness, 1 m",
+      "qty": 600,
+      "uom": "PCS",
+      "unitPrice": 3.25,
+      "amount": 1950.0,
+      "igst": 0
+    },
+    {
+      "lineNo": 3,
+      "partNo": "NC-SENS-TEMP-K",
+      "desc": "K-type thermocouple sensor",
+      "qty": 300,
+      "uom": "PCS",
+      "unitPrice": 6.1,
+      "amount": 1830.0,
+      "igst": 0
+    },
+    {
+      "lineNo": 4,
+      "partNo": "NC-ENCL-IP65",
+      "desc": "IP65 ABS enclosure 200x150",
+      "qty": 150,
+      "uom": "PCS",
+      "unitPrice": 7.8,
+      "amount": 1170.0,
+      "igst": 0
+    }
+  ]
+}

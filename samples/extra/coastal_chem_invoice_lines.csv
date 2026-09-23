@@ -1,0 +1,6 @@
+Invoice #,Invoice Date,Customer PO,Ln,Product Code,Product Name,Qty Shipped,Unit,Price Each,Extended Price,Sales Tax,Currency
+CC-5561,09/04/2026,PO-2026-00473,1,CC-IPA-99-1G,"Isopropyl alcohol 99%, 1 gal",48,EA,$18.90,"$907.20",$0.00,USD
+CC-5561,09/04/2026,PO-2026-00473,2,CC-DEGR-CIT-5G,"Citrus degreaser, 5 gal pail",12,EA,$64.50,"$774.00",$0.00,USD
+CC-5561,09/04/2026,PO-2026-00473,3,CC-WIPE-IND-200,"Industrial wipes, tub/200",60,EA,$11.25,"$675.00",$0.00,USD
+CC-5570,09/11/2026,PO-2026-00473,1,CC-LUB-SIL-11,"Silicone spray lubricant 11 oz",96,EA,$6.40,"$614.40",$0.00,USD
+CC-5570,09/11/2026,PO-2026-00473,2,CC-ABS-PAD-100,"Oil absorbent pads, pack/100",20,PK,$42.00,"$840.00",$0.00,USD
