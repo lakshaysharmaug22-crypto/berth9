@@ -1,0 +1,12 @@
+target/
+.toolchain/
+data/
+logs/
+_incoming/
+berth9-console/node_modules/
+berth9-console/dist/
+berth9-console/.angular/
+*.iml
+.idea/
+.vscode/
+.DS_Store
