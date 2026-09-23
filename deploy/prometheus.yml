@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 10s
+scrape_configs:
+  - job_name: berth9
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["berth9:8080"]
