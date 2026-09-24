@@ -10,7 +10,7 @@
 ![Apache Camel 4.22](https://img.shields.io/badge/Apache%20Camel-4.22%20LTS-0e7c86)
 ![Angular 21](https://img.shields.io/badge/Angular-21-0e7c86)
 
-**[Live console →](VERCEL_URL)** &nbsp;·&nbsp; [Architecture](#architecture) &nbsp;·&nbsp; [Run it locally](#run-it-locally) &nbsp;·&nbsp; [Design decisions](#design-decisions)
+**[Live console →](https://berth9.vercel.app)** &nbsp;·&nbsp; [Architecture](#architecture) &nbsp;·&nbsp; [Run it locally](#run-it-locally) &nbsp;·&nbsp; [Design decisions](#design-decisions)
 
 <img src="docs/demo.gif" alt="Berth 9 live pipeline console" width="900">
 
