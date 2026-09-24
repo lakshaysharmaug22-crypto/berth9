@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5b6b7c"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#15803d"/></marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c2410c"/></marker>
+    <style>.t{font-size:14px;font-weight:700;fill:#0f1b2a}.n{font-size:11px;font-weight:700;fill:#0e7c86}.s{font-size:11px;fill:#5b6b7c}.b{fill:#fff;stroke:#c7d0da;stroke-width:1.2}.k{fill:#e0f5f3;stroke:#0e7c86;stroke-width:1.4}</style>
+  </defs>
+  <rect width="1200" height="470" fill="#f7f9fb"/>
+  <text x="30" y="36" font-size="20" font-weight="700" fill="#0b1f33">One partner file, end to end</text>
+  <text x="30" y="56" class="s">Every stage emits a live event to the console; every record keeps lineage back to the partner column it came from.</text>
+
+  <g transform="translate(30,90)">
+    <rect width="150" height="120" rx="12" class="b"/><text x="14" y="24" class="n">01 · RECEIVE</text><text x="14" y="46" class="t">Intake</text>
+    <text x="14" y="68" class="s">SFTP / API / folder</text><text x="14" y="84" class="s">HMAC verified</text><text x="14" y="100" class="s">SHA-256: never twice</text>
+  </g>
+  <g transform="translate(212,90)">
+    <rect width="150" height="120" rx="12" class="b"/><text x="14" y="24" class="n">02 · DETECT</text><text x="14" y="46" class="t">Sniff + read</text>
+    <text x="14" y="68" class="s">content beats extension</text><text x="14" y="84" class="s">finds the real header</text><text x="14" y="100" class="s">streams, O(1) memory</text>
+  </g>
+  <g transform="translate(394,90)">
+    <rect width="150" height="120" rx="12" class="b"/><text x="14" y="24" class="n">03 · MAP</text><text x="14" y="46" class="t">Mapping spec vN</text>
+    <text x="14" y="68" class="s">₹1,23,456 · 12.5 L</text><text x="14" y="84" class="s">dd/MM vs MM/dd</text><text x="14" y="100" class="s">IT104 → unitPrice</text>
+  </g>
+  <g transform="translate(576,90)">
+    <rect width="150" height="120" rx="12" class="b"/><text x="14" y="24" class="n">04 · ENRICH</text><text x="14" y="46" class="t">Enrich</text>
+    <text x="14" y="68" class="s">qty × price if missing</text><text x="14" y="84" class="s">INR → USD (FX)</text><text x="14" y="100" class="s">catalog lookups</text>
+  </g>
+  <g transform="translate(758,90)">
+    <rect width="150" height="120" rx="12" class="k"/><text x="14" y="24" class="n">05 · VALIDATE</text><text x="14" y="46" class="t">Rule engine</text>
+    <text x="14" y="68" class="s">PO price ±2% / 5%</text><text x="14" y="84" class="s">open qty +5%</text><text x="14" y="100" class="s">GSTIN · dupes · dates</text>
+  </g>
+  <path d="M180 150H212" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M362 150H394" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M544 150H576" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M726 150H758" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <g transform="translate(980,70)">
+    <rect width="190" height="96" rx="12" class="b"/><text x="14" y="24" class="n" fill="#15803d" style="fill:#15803d">VALID · WARNING</text><text x="14" y="46" class="t">Outbox → ERP / Kafka</text>
+    <text x="14" y="66" class="s">batched, idempotency key</text><text x="14" y="82" class="s">breaker · backoff · dead letter</text>
+  </g>
+  <g transform="translate(980,196)">
+    <rect width="190" height="96" rx="12" class="b"/><text x="14" y="24" class="n" style="fill:#c2410c">ERROR</text><text x="14" y="46" class="t">Exceptions queue</text>
+    <text x="14" y="66" class="s">operator fixes a value</text><text x="14" y="82" class="s">→ re-validated, then delivered</text>
+  </g>
+  <path d="M908 130C940 130 950 118 980 118" stroke="#15803d" stroke-width="1.8" fill="none" marker-end="url(#g)"/>
+  <path d="M908 170C940 170 950 244 980 244" stroke="#c2410c" stroke-width="1.8" fill="none" marker-end="url(#r)"/>
+  <path d="M1075 292V330H833V210" stroke="#c2410c" stroke-width="1.4" stroke-dasharray="5 4" fill="none" marker-end="url(#r)"/>
+  <text x="850" y="324" class="s">fix + re-validate</text>
+
+  <g transform="translate(212,262)">
+    <rect width="372" height="70" rx="12" class="b"/><text x="14" y="24" class="n">EDI ONLY</text><text x="14" y="46" class="t">997 functional acknowledgment</text>
+    <text x="14" y="62" class="s">ISA/GS/ST envelopes checked → AK5 accept / reject back to sender</text>
+  </g>
+  <path d="M287 210V262" stroke="#5b6b7c" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#a)"/>
+
+  <g transform="translate(30,370)">
+    <rect width="1140" height="70" rx="12" fill="#0b1f33"/>
+    <text x="20" y="28" font-size="13" font-weight="700" fill="#2dd4bf">Measured on the demo run (8 files, 7 formats, 49 records)</text>
+    <text x="20" y="50" font-size="12" fill="#c9d6e3">39 delivered · 10 held for review with a plain-English reason · broken EDI rejected in the 997 · truncated fixed-width file flagged by its trailer count · duplicate API push skipped by hash</text>
+  </g>
+</svg>

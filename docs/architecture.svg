@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5b6b7c"/></marker>
+    <marker id="t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0e7c86"/></marker>
+    <style>
+      .t{font-size:13px;fill:#0f1b2a;font-weight:600}.s{font-size:11px;fill:#5b6b7c}.h{font-size:12px;fill:#0e7c86;font-weight:700;letter-spacing:.06em}
+      .box{fill:#fff;stroke:#c7d0da;stroke-width:1.2}.core{fill:#e0f5f3;stroke:#0e7c86;stroke-width:1.4}.db{fill:#eef2f6;stroke:#9aa9b8}
+      .l{stroke:#5b6b7c;stroke-width:1.4;fill:none}.lt{stroke:#0e7c86;stroke-width:1.6;fill:none}.d{stroke-dasharray:5 4}
+    </style>
+  </defs>
+  <rect width="1200" height="660" fill="#f7f9fb"/>
+  <text x="30" y="36" font-size="20" font-weight="700" fill="#0b1f33">Berth 9 · architecture</text>
+  <text x="30" y="56" class="s">Partner files in, canonical records out. Camel at the edges, a dependency-free Java engine in the middle, a transactional outbox before the ERP.</text>
+
+  <!-- partners -->
+  <text x="30" y="96" class="h">TRADING PARTNERS</text>
+  <rect x="30" y="108" width="190" height="62" rx="10" class="box"/><text x="44" y="132" class="t">US suppliers</text><text x="44" y="150" class="s">EDI X12 810 · cXML · fixed-width</text>
+  <rect x="30" y="182" width="190" height="62" rx="10" class="box"/><text x="44" y="206" class="t">Indian suppliers</text><text x="44" y="224" class="s">Excel · CSV · JSON (GST, INR)</text>
+  <rect x="30" y="256" width="190" height="62" rx="10" class="box"/><text x="44" y="280" class="t">Retail customer</text><text x="44" y="298" class="s">EDI X12 850 purchase orders</text>
+
+  <!-- channels -->
+  <text x="262" y="96" class="h">CHANNELS</text>
+  <rect x="262" y="118" width="150" height="46" rx="10" class="box"/><text x="276" y="138" class="t">SFTP drop</text><text x="276" y="154" class="s">folder per partner</text>
+  <rect x="262" y="190" width="150" height="46" rx="10" class="box"/><text x="276" y="210" class="t">REST API</text><text x="276" y="226" class="s">API key + HMAC-SHA256</text>
+  <rect x="262" y="262" width="150" height="46" rx="10" class="box"/><text x="276" y="282" class="t">Console upload</text><text x="276" y="298" class="s">operator token</text>
+  <path class="l" d="M220 139H262" marker-end="url(#a)"/><path class="l" d="M220 213H262" marker-end="url(#a)"/><path class="l" d="M220 287H262" marker-end="url(#a)"/>
+
+  <!-- server -->
+  <rect x="448" y="80" width="470" height="440" rx="16" fill="#fff" stroke="#0e7c86" stroke-width="1.6"/>
+  <text x="468" y="106" class="h">SERVER · SPRING BOOT 4.1 · APACHE CAMEL 4.22 · JAVA 21</text>
+  <rect x="468" y="120" width="200" height="54" rx="10" class="box"/><text x="482" y="142" class="t">Camel intake route</text><text x="482" y="159" class="s">poll · move .done/.error · read lock</text>
+  <rect x="696" y="120" width="202" height="54" rx="10" class="box"/><text x="710" y="142" class="t">Processing service</text><text x="710" y="159" class="s">SHA-256 dedupe · JDBC batches</text>
+  <path class="l" d="M412 141H468" marker-end="url(#a)"/><path class="l" d="M412 213C440 213 440 150 468 150" marker-end="url(#a)"/><path class="l" d="M412 285C446 285 446 160 468 160" marker-end="url(#a)"/>
+  <path class="l" d="M668 147H696" marker-end="url(#a)"/>
+
+  <rect x="468" y="192" width="430" height="150" rx="12" class="core"/>
+  <text x="484" y="214" class="h">ENGINE · ZERO THIRD-PARTY DEPENDENCIES</text>
+  <rect x="484" y="226" width="126" height="48" rx="8" class="box"/><text x="494" y="246" class="t">Readers</text><text x="494" y="262" class="s">sniff · header find</text>
+  <rect x="624" y="226" width="126" height="48" rx="8" class="box"/><text x="634" y="246" class="t">Mapper</text><text x="634" y="262" class="s">spec vN · transforms</text>
+  <rect x="764" y="226" width="120" height="48" rx="8" class="box"/><text x="774" y="246" class="t">Enricher</text><text x="774" y="262" class="s">FX · lookups</text>
+  <rect x="484" y="284" width="126" height="46" rx="8" class="box"/><text x="494" y="303" class="t">EDI X12</text><text x="494" y="319" class="s">envelopes · 997</text>
+  <rect x="624" y="284" width="126" height="46" rx="8" class="box"/><text x="634" y="303" class="t">Rule engine</text><text x="634" y="319" class="s">PO match · GSTIN</text>
+  <rect x="764" y="284" width="120" height="46" rx="8" class="box"/><text x="774" y="303" class="t">Suggester</text><text x="774" y="319" class="s">AI mapping</text>
+  <path class="l" d="M610 250H624" marker-end="url(#a)"/><path class="l" d="M750 250H764" marker-end="url(#a)"/><path class="l" d="M824 274C824 280 700 276 687 284" marker-end="url(#a)"/>
+  <path class="l" d="M797 174V192" marker-end="url(#a)"/>
+
+  <rect x="468" y="360" width="200" height="64" rx="10" class="db"/><text x="482" y="382" class="t">PostgreSQL / H2</text><text x="482" y="399" class="s">jobs · records · outbox · specs</text><text x="482" y="414" class="s">POs · catalog · delivered keys</text>
+  <rect x="696" y="360" width="202" height="64" rx="10" class="box"/><text x="710" y="382" class="t">Outbox relay</text><text x="710" y="399" class="s">Camel timer · Resilience4j breaker</text><text x="710" y="414" class="s">backoff · dead letter · replay</text>
+  <path class="l" d="M567 342V360" marker-end="url(#a)"/><path class="l" d="M668 392H696" marker-end="url(#a)"/>
+
+  <rect x="468" y="440" width="200" height="62" rx="10" class="box"/><text x="482" y="462" class="t">REST + SSE API</text><text x="482" y="479" class="s">exceptions · fix · re-validate</text><text x="482" y="494" class="s">live event stream</text>
+  <rect x="696" y="440" width="202" height="62" rx="10" class="box"/><text x="710" y="462" class="t">LLM advisor (optional)</text><text x="710" y="479" class="s">OpenAI-compatible · Ollama on-prem</text><text x="710" y="494" class="s">low-confidence fields · PII masked</text>
+  <path class="l d" d="M824 330C900 360 900 430 870 440" marker-end="url(#a)"/>
+
+  <!-- targets -->
+  <text x="960" y="96" class="h">DOWNSTREAM</text>
+  <rect x="960" y="340" width="210" height="52" rx="10" class="box"/><text x="974" y="362" class="t">ERP / OMS (REST)</text><text x="974" y="379" class="s">idempotency key per batch</text>
+  <rect x="960" y="404" width="210" height="52" rx="10" class="box"/><text x="974" y="426" class="t">Kafka</text><text x="974" y="443" class="s">berth9.invoice-line · order-line</text>
+  <path class="lt" d="M898 386C930 386 930 366 960 366" marker-end="url(#t)"/><path class="lt" d="M898 400C930 400 930 430 960 430" marker-end="url(#t)"/>
+  <rect x="960" y="120" width="210" height="52" rx="10" class="box"/><text x="974" y="142" class="t">997 acknowledgments</text><text x="974" y="159" class="s">back to EDI partners</text>
+  <path class="lt d" d="M898 300C940 300 940 146 960 146" marker-end="url(#t)"/>
+
+  <rect x="960" y="480" width="210" height="52" rx="10" class="box"/><text x="974" y="502" class="t">Angular console</text><text x="974" y="519" class="s">live pipeline · exceptions · mapping</text>
+  <path class="l" d="M568 502V540H930C946 540 946 506 960 506" marker-end="url(#a)"/>
+  <rect x="960" y="544" width="210" height="52" rx="10" class="box"/><text x="974" y="566" class="t">Prometheus + Grafana</text><text x="974" y="583" class="s">Micrometer metrics</text>
+  <path class="l d" d="M918 500C940 540 940 570 960 570" marker-end="url(#a)"/>
+
+  <text x="30" y="620" class="s">Solid arrows: record flow. Teal: delivery to downstream systems. Dashed: acks, optional LLM calls and metrics.</text>
+</svg>
